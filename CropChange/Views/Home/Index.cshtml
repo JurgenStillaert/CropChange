@@ -1,0 +1,57 @@
+﻿<!-- Views/Home/Index.cshtml -->
+@model List<Crops.Models.CropChange>
+
+<h2>Crop change</h2>
+
+<form asp-action="Submit" method="post">
+    <label>Modification Date:</label>
+    <input type="date" name="ModificationDate" required />
+
+    <label>Parcel ID:</label>
+    <input type="number" name="ParcelId" required />
+
+    <label>New Early Crop:</label>
+    <select name="NewEarlyCrop">
+        <option value="Green cover" selected>Green cover</option>
+    </select>
+
+    <label>New Main Crop:</label>
+    <select name="NewMainCrop">
+        <option value="Permanent pasture">Permanent pasture</option>
+        <option value="Meadow with > 200 trees/hectare">Meadow with > 200 trees/hectare</option>
+        <option value="Potatoes for fries">Potatoes for fries</option>
+        <option value="Potatoes for best Belgian fries">Potatoes for best Belgian fries</option>
+    </select>
+
+    <label>New Late Crop:</label>
+    <select name="NewLateCrop">
+        <option value="Green cover" selected>Green cover</option>
+    </select>
+
+    <input type="submit" value="Submit" />
+</form>
+
+<h2>Requests</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Modification Date</th>
+            <th>Parcel ID</th>
+            <th>New Early Crop</th>
+            <th>New Main Crop</th>
+            <th>New Late Crop</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            <tr>
+                <td>@request.ModificationDate.ToShortDateString()</td>
+                <td>@request.ParcelId</td>
+                <td>@request.NewEarlyCrop</td>
+                <td>@request.NewMainCrop</td>
+                <td>@request.NewLateCrop</td>
+            </tr>
+        }
+    </tbody>
+</table>
